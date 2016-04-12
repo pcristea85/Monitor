@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use Auth;
 
-class HomeController extends Controller
+class ValueController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,16 +18,27 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the details dashboard.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        return view('details');
+    }
 
-        $user = Auth::user();
-        //dd($user->id);
+    public function modify(array $data)
+    {
+        //Validate here
 
-        return view('home');
+        return view('details');
+    }
+
+    public function create(array $data = null)
+    {
+
+        if($data != null) dd($data);
+
+        return view('create');
     }
 }

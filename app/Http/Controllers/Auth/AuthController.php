@@ -31,13 +31,6 @@ class AuthController extends Controller
     protected $redirectTo = '/';
 
     /**
-     * Redirect Path
-     *
-     * @var string
-     */
-    protected $redirectPath = '/dash';
-
-    /**
      * Create a new authentication controller instance.
      *
      * @return void
