@@ -31,6 +31,13 @@ class AuthController extends Controller
     protected $redirectTo = '/';
 
     /**
+     * Redirect Path
+     *
+     * @var string
+     */
+    protected $redirectPath = '/dash';
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void
@@ -63,10 +70,14 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        //$user->save();
+
+        return $user;
     }
 }
