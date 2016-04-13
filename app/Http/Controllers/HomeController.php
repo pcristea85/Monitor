@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
+use App\Value;
 
 class HomeController extends Controller
 {
@@ -27,8 +28,11 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
-        //dd($user->id);
+        
+        $values = Value::where('user_id', $user->id)->get();
 
-        return view('home');
+        //dd($values);
+
+        return view('home', array('values'=>$values));
     }
 }

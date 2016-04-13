@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <a href="home" type="button" class="btn btn-primary">Back</a>
+            <a href="/home" type="button" class="btn btn-primary">Back</a>
         
             <div class="panel panel-default">
                 <div class="panel-heading">Details
@@ -65,14 +65,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($values_history as $value_historic)
                             <tr>
                                 <td>
-                                    $3.99
+                                    {{ $value_historic->value }}
                                 </td>
                                 <td>
-                                    2019-30-22 10:55AM
+                                    {{ $value_historic->created_at }}
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

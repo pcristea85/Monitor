@@ -18,5 +18,6 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-Route::any('/value/details', 'ValueController@index');
+Route::get('/value/details/{id}', 'ValueController@show');
+Route::post('/value/details/{id}', 'ValueController@modify');
 Route::any('/value/create', 'ValueController@create');

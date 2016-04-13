@@ -10,7 +10,6 @@
                 <div class="panel-body">
                     <a href="value/create" type="button" class="btn btn-primary">Monitor New Value</a>
 
-
                     <table class="table">
                         <thead>
                             <tr>
@@ -38,29 +37,32 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            @foreach ($values as $value)
                             <tr>
                                 <td>
-                                    Some Product
+                                    {{ $value->name }}
                                 </td>
                                 <td>
-                                    <a href="http://www.buystuff.com/?pid=23">http://www.buystuff.com/?pid=23</a>
+                                    <a href="{{ $value->url }}">{{ $value->url }}</a>
                                 </td>
                                 <td>
-                                    div.price
+                                    {{ $value->css_rule }}
                                 </td>
                                 <td>
-                                    Numeric
+                                    {{ $value->type }}
                                 </td>
                                 <td>
-                                    2019-30-22
+                                    {{ $value->created_at }}
                                 </td>
                                 <td>
                                     $3.99
                                 </td>
                                 <td>
-                                    <a href="details">Details</a>
+                                    <a href="value/details/{{ $value->id }}">Details</a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
