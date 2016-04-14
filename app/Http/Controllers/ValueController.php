@@ -47,13 +47,8 @@ class ValueController extends Controller
     {
         $value = Value::findOrFail($id);
 
-
-
         if ($request->method() == "POST") {
-
-
-
-            $this->validate($request, [
+            $this->validate( $request, [
                 'name' => 'required|max:255|unique:values,name,'.$value->id,
                 'css_rule' => 'required|max:255',
                 'type' => 'required|in:text,numeric',
@@ -84,7 +79,6 @@ class ValueController extends Controller
      */
     public function create(Request $request)
     {
-
         if ($request->method() == "POST") {
             $this->validate($request, [
                 'name' => 'required|unique:values|max:255',
@@ -96,7 +90,6 @@ class ValueController extends Controller
 
             // create value
             $value = new Value;
-
             $value->name = $request->name;
             $value->css_rule = $request->css_rule;
             $value->user_id = Auth::user()->id; 
@@ -106,9 +99,28 @@ class ValueController extends Controller
 
             $value->save();
 
-            // return to home page
+            return redirect('/home');
         }
     
         return view('value.create');
+    }
+
+    /**
+     * Delete a Value.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, $id)
+    {    
+        $value = Value::findOrFail($id);
+
+        if($value->user_id != Auth::user()->id) {
+            return redirect('/home');            
+        }
+
+        ValueHistoric::where('value_id', $value->id)->delete();
+        $value->delete();
+
+        return redirect('/home');
     }
 }

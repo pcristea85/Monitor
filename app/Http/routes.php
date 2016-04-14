@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'HomeController@index');
 
 Route::auth();
 
@@ -22,3 +21,8 @@ Route::get('/value/details/{id}', 'ValueController@show');
 Route::post('/value/details/{id}', 'ValueController@modify');
 Route::any('/value/create', 'ValueController@create');
 Route::any('/value/edit/{id}', 'ValueController@modify');
+Route::get('/value/delete/{id}', 'ValueController@delete');
+
+// Test routes
+Route::get('/test/numeric', 'TestController@testNumeric');
+Route::get('/test/text', 'TestController@testText');

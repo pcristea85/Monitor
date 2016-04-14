@@ -69,8 +69,6 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        //$user->save();
-
         return $user;
     }
 }

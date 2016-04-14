@@ -15,6 +15,7 @@ class CreateValuesHistory extends Migration
         Schema::create('values_history', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('value_id');
+            $table->index('value_id');
             $table->string('value', 255);
             $table->timestamps();
         });

@@ -15,6 +15,7 @@ class CreateValuesTable extends Migration
         Schema::create('values', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
+            $table->index('user_id');
             $table->string('name', 255);
             $table->string('url', 255);
             $table->string('css_rule', 255);

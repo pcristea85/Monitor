@@ -62,7 +62,7 @@
                         <div class="checkbox">
                             <label>
                                 <input name="alert" type="hidden" value="0">
-                                <input name="alert" type="checkbox" value="1" @if ($value->type == 'numeric') checked @endif >Alert me via Email
+                                <input name="alert" type="checkbox" value="1" @if ($value->alert) checked @endif >Alert me via Email
                             </label>
                         </div>
                         <div class="col-sm-10">

@@ -7,14 +7,13 @@
             <a href="/home" type="button" class="btn btn-primary">Back</a>
         
             <div class="panel panel-default">
-                <div class="panel-heading"><b>{{ $value->name }}</b> Details
+                <div class="panel-heading"><b>{{ $value->name }}</b>Details
                     <div class="pull-right">
                     <a href="/value/edit/{{ $value->id }}" type="button" class="btn btn-danger">Edit</a>
-                    <button type="button" class="btn btn-info">Delete</button>
+                    <a href="/value/delete/{{ $value->id }}" type="button" class="btn btn-info">Delete</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
-
                 <div class="panel-body">
                     <table class="table">
                         <tbody>
@@ -48,6 +47,14 @@
                                 </td>
                                 <td>
                                     <i>{{ $value->type }}</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Value</b>
+                                </td>
+                                <td>
+                                    <i>"{{ $value->value }}"</i>
                                 </td>
                             </tr>
                             <tr>

@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Auth;
 use App\Value;
+use DB;
 
 class HomeController extends Controller
 {
@@ -26,11 +27,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $user = Auth::user();
-        
+
         $values = Value::where('user_id', $user->id)->with( ['history' => function($query) {
-            $query->orderBy('created_at','desc')->limit(1);
+            $query->orderBy('created_at','desc');
         }])->get();
 
         return view('home', array('values'=>$values));
