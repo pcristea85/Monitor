@@ -28,4 +28,15 @@ class Value extends Model
     protected $fillable = [
         'name', 'css_rule', 'type', 'user_id', 'url', 'alert'
     ];
+
+    protected $casts = [
+        'alert' => 'boolean'
+    ];
+
+    /**
+     * Get the history for this value.
+     */
+    public function history() {
+        return $this->hasMany('App\ValueHistoric');
+    }
 }

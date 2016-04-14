@@ -37,7 +37,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             @foreach ($values as $value)
                             <tr>
                                 <td>
@@ -56,7 +55,11 @@
                                     {{ $value->created_at }}
                                 </td>
                                 <td>
-                                    $3.99
+                                    @if(isset($value->history[0]))
+                                        {{ $value->history[0]->value }}
+                                    @else
+                                        N/A
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="value/details/{{ $value->id }}">Details</a>
@@ -65,7 +68,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

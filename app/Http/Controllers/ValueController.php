@@ -35,16 +35,53 @@ class ValueController extends Controller
 
         $values_history = ValueHistoric::where('value_id', $value->id)->get();
 
-        return view('details', array('values_history'=>$values_history));
+        return view('value.details', array('value'=>$value, 'values_history'=>$values_history));
     }
 
-    public function modify(Request $request)
+    /**
+     * Show/Edit the Value properties.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function modify(Request $request, $id)
     {
-        //Validate here
+        $value = Value::findOrFail($id);
 
-        return view('details');
+
+
+        if ($request->method() == "POST") {
+
+
+
+            $this->validate($request, [
+                'name' => 'required|max:255|unique:values,name,'.$value->id,
+                'css_rule' => 'required|max:255',
+                'type' => 'required|in:text,numeric',
+                'url' => 'required|url',
+                'value'=>'required|max:255'
+            ]);
+
+            $value->name = $request->name;
+            $value->css_rule = $request->css_rule;
+            $value->user_id = Auth::user()->id; 
+            $value->type = $request->type;
+            $value->url = $request->url;
+            $value->alert = $request->alert;
+            $value->value = $request->value;
+
+            $value->save();
+
+            return redirect('value/details/'.$value->id);
+        }
+
+        return view('value.edit', array('value'=>$value));
     }
 
+    /**
+     * Show/Create a new Value.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create(Request $request)
     {
 
@@ -72,6 +109,6 @@ class ValueController extends Controller
             // return to home page
         }
     
-        return view('create');
+        return view('value.create');
     }
 }

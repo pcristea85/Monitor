@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index');
 Route::get('/value/details/{id}', 'ValueController@show');
 Route::post('/value/details/{id}', 'ValueController@modify');
 Route::any('/value/create', 'ValueController@create');
+Route::any('/value/edit/{id}', 'ValueController@modify');
